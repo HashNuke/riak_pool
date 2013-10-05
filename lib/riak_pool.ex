@@ -36,6 +36,13 @@ defmodule RiakPool do
   end
 
 
+  def get(bucket, key) do
+    __MODULE__.run fn (worker)->
+      :riakc_pb_socket.get worker, bucket, key
+    end
+  end
+
+
   def put(object) do
     __MODULE__.run fn (worker)->
       :riakc_pb_socket.put worker, object

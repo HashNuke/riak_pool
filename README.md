@@ -70,6 +70,12 @@ This library provides 4 functions
 
 This function accepts a riak object, created with the `:riakc_obj` module as the argument. This function is what is used to create or update values in the database. Refer to this [blog post](http://akash.im/2013/09/30/using-riak-with-elixir.html) on how to use the `:riakc_obj` module to encapsulate your data.
 
+
+#### RiakPool.get(bucket, key)
+
+Used to get the value stored for a key from in a bucket. It accepts a bucket name and the key.
+
+
 #### RiakPool.delete(bucket, key)
 
 Used to delete a key/value from a bucket. It accepts a bucket name and the key to delete.
