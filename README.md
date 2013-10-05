@@ -64,30 +64,42 @@ end
 
 ## Usage
 
-This library provides 4 functions
+The library provides the following functions.
 
-#### RiakPool.put(object)
+#### Testing Riak connection
 
-This function accepts a riak object, created with the `:riakc_obj` module as the argument. This function is what is used to create or update values in the database. Refer to this [blog post](http://akash.im/2013/09/30/using-riak-with-elixir.html) on how to use the `:riakc_obj` module to encapsulate your data.
+    RiakPool.ping
 
-
-#### RiakPool.get(bucket, key)
-
-Used to get the value stored for a key from in a bucket. It accepts a bucket name and the key.
-
-
-#### RiakPool.delete(bucket, key)
-
-Used to delete a key/value from a bucket. It accepts a bucket name and the key to delete.
-
-#### RiakPool.ping
-
-This is a utility function. The connection to your database is fine if it returns `:pong`.
+Used to test if connection to your database is fine. Should return `:pong`.
 
     iex(1)> RiakPool.ping
     :pong
 
-#### RiakPool.run(fn(worker))
+
+#### Put objects
+
+    RiakPool.put(riakc_obj)
+
+Used to create or update values in the database. Accepts a riak object, created with the `:riakc_obj` module as the argument. Refer to this [blog post](http://akash.im/2013/09/30/using-riak-with-elixir.html) on how to use the `:riakc_obj` module to encapsulate your data.
+
+
+#### Get objects
+
+    RiakPool.get(bucket, key)
+
+Used to get the value stored for a key from in a bucket. It accepts a bucket name and the key.
+
+
+#### Delete
+
+    RiakPool.delete(bucket, key)
+
+Used to delete a key/value from a bucket in the database. It accepts a bucket name and the key to delete.
+
+
+#### Running your own stuff
+
+    RiakPool.run(fun)
 
 Pass a function that accepts a worker pid as the argument. It'll run the function for you.
 

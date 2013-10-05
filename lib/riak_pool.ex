@@ -38,6 +38,9 @@ defmodule RiakPool do
   end
 
 
+  @doc """
+  Used to create or update values in the database. Accepts a riak object, created with the `:riakc_obj` module as the argument.
+  """
   @spec get(String.t, String.t) :: :riakc_obj.riakc_obj
   def get(bucket, key) do
     __MODULE__.run fn (worker)->
@@ -53,6 +56,13 @@ defmodule RiakPool do
   end
 
 
+  @doc """
+  Used to delete a key/value from a bucket in the database.
+
+  ##Examples
+    iex> RiakPool.delete("students", "PPQuKZsyHWVPSbs3rQQVWW9nyTe")
+    :ok
+  """
   @spec delete(String.t, String.t) :: :ok
   def delete(bucket, key) do
     __MODULE__.run fn (worker)->
@@ -61,6 +71,13 @@ defmodule RiakPool do
   end
 
 
+  @doc """
+  Used to test if connection to your database is fine. Should return `:pong`.
+
+  ##Examples
+    iex> RiakPool.ping
+    :pong
+  """
   @spec ping() :: atom
   def ping do
     __MODULE__.run fn (worker)->
