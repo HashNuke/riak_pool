@@ -1,6 +1,6 @@
 # RiakPool
 
-Riak pool library based on Basho's [Riak erlang client](https://github.com/basho/riak-erlang-client)
+Pooled Riak client library based on Basho's [Riak erlang client](https://github.com/basho/riak-erlang-client)
 
 This library gives you easy access to Riak with pooled connections.
 
@@ -8,11 +8,11 @@ This library gives you easy access to Riak with pooled connections.
 
 * To use this in your Elixir project, add it to your dependency list in `mix.exs`
 
-      defp deps do
-        [
-          {:riak_pool, github: "HashNuke/riak-pool"}
-        ]
-      end
+        defp deps do
+          [
+            {:riak_pool, github: "HashNuke/riak-pool"}
+          ]
+        end
 
 * Run `mix deps.get`
 
@@ -22,13 +22,17 @@ There are two ways to start RiakPool
 
 #### Manually
 
-* RiakPool.start_link(address, port)
+* `RiakPool.start_link(address, port)`
 
-      RiakPool.start_link '127.0.0.1', 8087
+```elixir
+RiakPool.start_link '127.0.0.1', 8087
+```
 
-* RiakPool.start_link(address, port, size_options)
+* `RiakPool.start_link(address, port, size_options)`
 
-      RiakPool.start_link '127.0.0.1', 8087, [size: 6, overflow: 12]
+```elixir
+RiakPool.start_link '127.0.0.1', 8087, [size: 6, overflow: 12]
+```
 
 Default value for pool size is 5 and max overflow is 10.
 
@@ -81,9 +85,11 @@ Use this function, to perform other tasks, that this library doesn't provide hel
 
 Here's an example that lists keys in the "students" bucket:
 
-    RiakPool.run fn(worker)->
-      :riakc_pb_socket.list_keys worker, "students"
-    end
+```elixir
+RiakPool.run fn(worker)->
+  :riakc_pb_socket.list_keys worker, "students"
+end
+```
 
 ## Credits
 
