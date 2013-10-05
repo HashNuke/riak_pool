@@ -1,6 +1,7 @@
 defmodule RiakPool do
   use Supervisor.Behaviour
 
+
   def start_link(address, port, size_options) do
     :supervisor.start_link(__MODULE__, [address, port, size_options])
   end
@@ -31,18 +32,20 @@ defmodule RiakPool do
   end
 
 
+  @spec run((pid -> any)) :: any
   def run(worker_function) do
     :poolboy.transaction :riak_pool, worker_function
   end
 
 
+  @spec get(String.t, String.t) :: :riakc_obj.riakc_obj
   def get(bucket, key) do
     __MODULE__.run fn (worker)->
       :riakc_pb_socket.get worker, bucket, key
     end
   end
 
-
+  @spec put(:riakc_obj.riakc_obj) :: :riakc_obj.riakc_obj
   def put(object) do
     __MODULE__.run fn (worker)->
       :riakc_pb_socket.put worker, object
@@ -50,6 +53,7 @@ defmodule RiakPool do
   end
 
 
+  @spec delete(String.t, String.t) :: :ok
   def delete(bucket, key) do
     __MODULE__.run fn (worker)->
       :riakc_pb_socket.delete worker, bucket, key
@@ -57,6 +61,7 @@ defmodule RiakPool do
   end
 
 
+  @spec ping() :: atom
   def ping do
     __MODULE__.run fn (worker)->
       :riakc_pb_socket.ping worker
