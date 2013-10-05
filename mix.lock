@@ -1,0 +1,5 @@
+[ "meck": {:git, "git://github.com/basho/meck.git", "2b25a30a8688f94106d07f23a9f1fb523ac00f08", [{:tag, "0.8.1"}]},
+  "poolboy": {:git, "git://github.com/devinus/poolboy.git", "91b68de43d49bcccf2631016febda70b20d7aa75", [{:tag, "1.0.0"}]},
+  "protobuffs": {:git, "git://github.com/basho/erlang_protobuffs.git", "0b00f9031cda5ffe83a3d183e14f2dc918bc2932", [{:tag, "0.8.1p2"}]},
+  "riak_pb": {:git, "git://github.com/basho/riak_pb", "2adf207d053738559811eb17f62f7ce6b6f5cc95", [{:tag, "2.0.0.7"}]},
+  "riakc": {:git, "git://github.com/basho/riak-erlang-client.git", "3b223a7ff0f17acc72e7d365966a93368cde771b", []} ]
