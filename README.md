@@ -33,10 +33,10 @@ There are two ways to start RiakPool
 * `RiakPool.start_link(address, port, size_options)`
 
   ```elixir
-  RiakPool.start_link '127.0.0.1', 8087, [size: 6, overflow: 12]
+  RiakPool.start_link '127.0.0.1', 8087, [size: 6, max_overflow: 12]
   ```
 
-Default value for pool size is 5 and max overflow is 10.
+Default value for pool `size` is 5 and `max_overflow` is 10.
 
 #### Add it to your supervision tree
 
