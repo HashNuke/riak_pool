@@ -1,8 +1,8 @@
 # RiakPool
 
-Pooled Riak client library in Elixir based on Basho's [Riak erlang client](https://github.com/basho/riak-erlang-client)
+Provides pooled Riak connections for Elixir. Re-connects automatically upon disconnection.
 
-This library gives you easy access to Riak with pooled connections.
+Can also be used in Erlang. Based on Basho's [Riak erlang client](https://github.com/basho/riak-erlang-client)
 
 ## Install
 
