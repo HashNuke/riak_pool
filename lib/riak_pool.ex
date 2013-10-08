@@ -8,7 +8,7 @@ defmodule RiakPool do
 
 
   def start_link(address, port) do
-    __MODULE__.start_link(address, port, [])
+    start_link(address, port, [])
   end
 
 
@@ -45,7 +45,7 @@ defmodule RiakPool do
   """
   @spec get(String.t, String.t) :: :riakc_obj.riakc_obj
   def get(bucket, key) do
-    __MODULE__.run fn (worker)->
+    run fn (worker)->
       :riakc_pb_socket.get worker, bucket, key
     end
   end
@@ -53,7 +53,7 @@ defmodule RiakPool do
 
   @spec put(:riakc_obj.riakc_obj) :: :riakc_obj.riakc_obj
   def put(object) do
-    __MODULE__.run fn (worker)->
+    run fn (worker)->
       :riakc_pb_socket.put worker, object
     end
   end
@@ -69,14 +69,14 @@ defmodule RiakPool do
   """
   @spec delete(String.t, String.t) :: :ok
   def delete(bucket, key) do
-    __MODULE__.run fn (worker)->
+    run fn (worker)->
       :riakc_pb_socket.delete worker, bucket, key
     end
   end
 
 
   def list_buckets do
-    __MODULE__.run fn (worker)->
+    run fn (worker)->
       :riakc_pb_socket.list_buckets worker
     end
   end
@@ -92,7 +92,7 @@ defmodule RiakPool do
   """
   @spec ping() :: atom
   def ping do
-    __MODULE__.run fn (worker)->
+    run fn (worker)->
       :riakc_pb_socket.ping worker
     end
   end
