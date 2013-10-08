@@ -11,7 +11,7 @@ Can also be used in Erlang. Based on Basho's [Riak erlang client](https://github
   ```elixir
   defp deps do
     [
-      {:riak_pool, github: "HashNuke/riak-pool"}
+      {:riak_pool, github: "HashNuke/riak_pool"}
     ]
   end
   ```
@@ -115,7 +115,7 @@ end
 
 ## Credits
 
-[Akash Manohar J](http://github.com/HashNuke) wrote this.
+[Akash Manohar](http://github.com/HashNuke) wrote this.
 
 RiakPool is available in the public domain. Or optionally under the [MIT License](https://github.com/HashNuke/riak_pool/blob/master/LICENSE).
 
