@@ -1,4 +1,4 @@
-defmodule RiakPool.RiakWorker do
+defmodule RiakPool.Worker do
   use GenServer.Behaviour
   @behaviour :poolboy_worker
 

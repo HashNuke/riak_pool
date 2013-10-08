@@ -15,7 +15,7 @@ defmodule RiakPool do
   def init([address, port, size_options]) do
     default_pool_options = [
       name: {:local, :riak_pool},
-      worker_module: RiakPool.RiakWorker,
+      worker_module: RiakPool.Worker,
       size: 5,
       max_overflow: 10
     ]
