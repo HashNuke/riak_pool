@@ -34,7 +34,9 @@ defmodule RiakPool do
 
   @spec run((pid -> any)) :: any
   def run(worker_function) do
-    :poolboy.transaction :riak_pool, worker_function
+    :poolboy.transaction :riak_pool, fn(worker)->
+      :gen_server.call(worker, {:run, worker_function})
+    end
   end
 
 
@@ -48,6 +50,7 @@ defmodule RiakPool do
     end
   end
 
+
   @spec put(:riakc_obj.riakc_obj) :: :riakc_obj.riakc_obj
   def put(object) do
     __MODULE__.run fn (worker)->
@@ -60,6 +63,7 @@ defmodule RiakPool do
   Used to delete a key/value from a bucket in the database.
 
   ##Examples
+
     iex> RiakPool.delete("students", "PPQuKZsyHWVPSbs3rQQVWW9nyTe")
     :ok
   """
@@ -71,10 +75,18 @@ defmodule RiakPool do
   end
 
 
+  def list_buckets do
+    __MODULE__.run fn (worker)->
+      :riakc_pb_socket.list_buckets worker
+    end
+  end
+
+
   @doc """
   Used to test if connection to your database is fine. Should return `:pong`.
 
   ##Examples
+
     iex> RiakPool.ping
     :pong
   """
@@ -84,4 +96,5 @@ defmodule RiakPool do
       :riakc_pb_socket.ping worker
     end
   end
+
 end
