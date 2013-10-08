@@ -115,6 +115,8 @@ end
 
 ## Credits
 
-Copyright (c) 2013 Akash Manohar J
+[Akash Manohar J](http://github.com/HashNuke) wrote this.
 
-Licensed under the [MIT License](https://github.com/HashNuke/riak-pool/blob/master/LICENSE)
+RiakPool is available in the public domain. Or optionally under the [MIT License](https://github.com/HashNuke/riak_pool/blob/master/LICENSE).
+
+If you use it somewhere, send me an email to tell me about it - that'll make me extremely happy.
