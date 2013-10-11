@@ -1,4 +1,4 @@
-# RiakPool
+# riak_pool
 
 Provides pooled Riak connections for Elixir. Re-connects automatically upon disconnection.
 
@@ -30,13 +30,21 @@ There are two ways to start RiakPool
   RiakPool.start_link '127.0.0.1', 8087
   ```
 
-* `RiakPool.start_link(address, port, size_options)`
+* `RiakPool.start_link(address, port, options)`
 
   ```elixir
-  RiakPool.start_link '127.0.0.1', 8087, [size: 6, max_overflow: 12]
+  RiakPool.start_link('127.0.0.1', 8087, [
+      pool_options: [size: 6, max_overflow: 12]
+    ])
   ```
 
-Default value for pool `size` is 5 and `max_overflow` is 10.
+
+__Valid option are__
+
+* `pool_options` - options for the pool. Default value for `size` is 5 and `max_overflow` is 10.
+* `connection_options` - options for the Riak connection
+* `retry_interval` - incase of disconnection from Riak, this is the number of seconds (interval), at which a re-connection will be tried for. By default the value is `60` (seconds).
+
 
 #### Add it to your supervision tree
 

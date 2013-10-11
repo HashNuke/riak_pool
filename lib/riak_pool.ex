@@ -2,8 +2,8 @@ defmodule RiakPool do
   use Supervisor.Behaviour
 
 
-  def start_link(address, port, size_options) do
-    :supervisor.start_link(__MODULE__, [address, port, size_options])
+  def start_link(address, port, options) do
+    :supervisor.start_link(__MODULE__, [address, port, options])
   end
 
 
@@ -12,7 +12,7 @@ defmodule RiakPool do
   end
 
 
-  def init([address, port, size_options]) do
+  def init([address, port, options]) do
     default_pool_options = [
       name: {:local, :riak_pool},
       worker_module: RiakPool.Worker,
@@ -20,11 +20,20 @@ defmodule RiakPool do
       max_overflow: 10
     ]
 
-    worker_args = [address, port]
+    pool_options = Dict.get(options, :pool_options, [])
+
+    worker_args = [
+      address,
+      port,
+      [
+        retry_interval:     Dict.get(options, :retry_interval, 60) * 1000,
+        connection_options: Dict.get(options, :connection_options, [])
+      ]
+    ]
 
     children = [
       :poolboy.child_spec(:riak_pool,
-        Dict.merge(default_pool_options, size_options),
+        Dict.merge(default_pool_options, pool_options),
         worker_args)
     ]
 
