@@ -39,7 +39,7 @@ There are two ways to start RiakPool
   ```
 
 
-__Valid option are__
+__Valid options are__
 
 * `pool_options` - options for the pool. Default value for `size` is 5 and `max_overflow` is 10.
 * `connection_options` - options for the Riak connection
